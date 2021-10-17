@@ -1,0 +1,51 @@
+import math
+from operator import itemgetter
+import time
+
+### Input Parameters ###
+trainingFile = "zip.train"
+testFile = "zip.test"
+
+# Start / End dimensions
+dimS = 1
+dimE = 257 # max of 265 points for zip.train / zip.test 
+
+# Start / End training points
+trainS = 0
+trainE = 7292 # max of 7291 points for zip.train
+
+# Start / End test points
+testS = 0
+testE = 2008 # max of 2007 for zip.test
+
+### Global Variables ###
+trainingPoints = []
+testPoints = []
+
+# Read files and split data by line
+# params: filename
+# returns: list with each line in file
+def readFile (filename):
+    info = []
+    with open(filename, 'r') as openFile:
+        data = openFile.readlines()
+        for line in data:
+            info.append(line.split())
+    openFile.close()
+    return info
+
+# Extract each number
+# params: info - list of training point strings
+# returns: list with training points
+def extractData(info):
+    data = []
+    for line in info:
+        pixels = []
+        # Each number is represented by a set of 256 values
+        for pixel in line:
+            pixels.append(float(pixel))
+        data.append(pixels)
+    return data
+
+# Print input training points
+# params: start, end - indexes for range to print
