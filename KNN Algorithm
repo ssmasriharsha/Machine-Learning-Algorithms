@@ -68,3 +68,15 @@ def euclideanDistance(a, b):
     def byMajority(testValue, k):
     count = dict()
     neighbors = kNeighbors(testValue, k)
+    
+    for neighbor in neighbors:
+        # if already present, increment count
+        if neighbor[1] in count:
+            count[neighbor[1]] += 1
+        else:
+            # not present, add to dictionary
+            count[neighbor[1]] = 1
+
+    # return value with highest count            
+    return max(count.iteritems(), key = itemgetter(1))[0]
+
