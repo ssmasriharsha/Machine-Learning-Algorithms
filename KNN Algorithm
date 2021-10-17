@@ -119,3 +119,18 @@ def checkErrorRange(start, end, interval):
         errorRate.append([i, error, timeInterval])
      
     return errorRate
+    
+    trainingPoints = extractData(readFile(trainingFile))
+testPoints = extractData(readFile(testFile))
+
+print "K-Nearest Neighbors"
+
+# Print params
+print "Item\t\tStart\t\tEnd"
+print "Dimensions:\t", dimS, "\t-\t", dimE
+print "Training:\t", trainS, "\t-\t", trainE
+print "Testing:\t", testS, "\t-\t", testE
+print "\n"
+
+# Check Error for given: start/end k's, for every n k's
+checkErrorRange(1, 25, 2)
