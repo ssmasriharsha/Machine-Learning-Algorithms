@@ -49,3 +49,18 @@ def extractData(info):
 
 # Print input training points
 # params: start, end - indexes for range to print
+
+def printPoints(start, end):
+    for i in range(start, end):
+        print trainingPoints[i]
+
+# Similarity given by ||x_test - x_train||
+# params: a, b - data points to compare
+# returns: euclidean distance between two points
+def euclideanDistance(a, b):
+    d = 0
+    for i in range(dimS, dimE):
+        d += pow((a[i] - b[i]), 2)
+        
+    d = math.sqrt(d)
+    return d
