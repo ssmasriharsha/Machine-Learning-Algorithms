@@ -79,4 +79,43 @@ def euclideanDistance(a, b):
 
     # return value with highest count            
     return max(count.iteritems(), key = itemgetter(1))[0]
+def checkError(k):
+    incorrect = 0.0
+    
+    # subset of testpoints
+    testSet = testPoints[testS:testE]
+    
+    # compare each test point value against its expected value
+    for testPoint in testSet:
+        if testPoint[0] != byMajority(testPoint, k):
+            incorrect += 1
+ 
+    # return (incorrect guesses / total number of trials)
+    return (incorrect / len(testSet)) * 100
 
+# Check error over a range of k's
+# params: start, end - range of k
+#        interval, every nth number is checked for k
+# returns: list of error percentages [k, percentage]
+def checkErrorRange(start, end, interval):
+    errorRate = []
+    ks = []
+    
+    print "k\tError(%)\tTime(s)"
+    
+    # select every nth k
+    for i in range(start, end + 1):
+        if i % interval != 0:
+            ks.append(i);
+    
+    # for every value of k, check error %
+    for k in ks:  
+        intervalStart = time.clock()
+        error = checkError(k)
+        intervalEnd = time.clock()
+        timeInterval = intervalEnd - intervalStart        
+        
+        print k, "\t", error, "\t\t", timeInterval
+        errorRate.append([i, error, timeInterval])
+     
+    return errorRate
