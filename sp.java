@@ -41,4 +41,26 @@ public:
         return lps[n - 1];
     }
     
+    string shortestPalindrome(string str) {
+        
+        int n = str.size();
+        
+        string rev = str;
+        
+        reverse(rev.begin(), rev.end());
+        
+        // find lps
+        
+        int lps = find_lps(str + "#" + rev);
+        
+        // find the characters that must be appended
+        
+        string append = str.substr(lps);
+        
+        reverse(append.begin(), append.end());
+        
+        return append + str;
+    }
+};
+    
     
