@@ -20,5 +20,50 @@ class Solution {
         
         return true;
     }
+    private boolean sudokoSolver(char[][] board, int i, int j)
+    {
+        if(i == 9) return true;
+        
+        int ni = 0; 
+        int nj = 0;
+        if(j == 8)
+        {
+            ni = i+1;
+            nj = 0;
+        }
+        else
+        {
+            ni = i;
+            nj = j + 1;
+        }
+        
+        if(board[i][j] != '.') 
+        {
+            if(sudokoSolver(board, ni, nj)) return true;
+        }
+        
+        else
+        {
+            for(int n = 1; n <= 9; n++)
+            {
+                if(isValid(board, i, j, n))
+                {
+                    board[i][j] = (char) (n + '0');
+                    
+                    if(sudokoSolver(board, ni, nj)) return true;
+                    
+                    board[i][j] = '.';
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    public void solveSudoku(char[][] board) {
+        
+        sudokoSolver(board, 0, 0);
+    }
+}
     
     
