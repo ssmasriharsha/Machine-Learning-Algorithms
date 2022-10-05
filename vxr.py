@@ -13,5 +13,18 @@ class Solution:
             s = s[1:]
         else:
             mul = 1
+       # finding number
+        match = re.search("^[\d]+", s)
+        if match is not None:
+            integer = int(match.group())
+        else:
+            integer = 0
+        
+        result = integer * mul
+        if result >= (2 ** 31) - 1:
+            result = (2 ** 31) - 1
+        elif result <= (2 ** 31) * (-1):
+            result = (2 ** 31) * (-1)
+        return result
         
        
