@@ -7,3 +7,14 @@ class Solution:
             res = countSay(n-1)
             i = 0
             j = i
+            while j < len(res):
+                while j < len(res) and res[i] == res[j]:
+                    j += 1
+                count = j - i
+                sequence += str(count)
+                sequence += str(res[i])
+                i = j
+            return sequence
+        return countSay(n)
+                
+
